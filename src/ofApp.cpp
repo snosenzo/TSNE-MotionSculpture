@@ -110,6 +110,9 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     if(key == 'h') {
         b_showGUI = !b_showGUI;
+        if(!b_showGUI) {
+            ofHideCursor();
+        }
     }
 
 }
@@ -336,7 +339,6 @@ void ofApp::csvData() {
     
     
     testPoints.clear();
-    tsnePoints.clear();
     paths.clear();
     
     for (int i = 0; i < data.size(); i++) {
@@ -374,7 +376,7 @@ void ofApp::csvData() {
     //   if false, you'll get the original points.
     
     int dims = 3;
-    bool normalize = false;
+    bool normalize = true;
     
     // finally let's run ofxTSNE! this may take a while depending on your
     // data, and it will return a set of embedded points, structured as
