@@ -597,6 +597,109 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
+			<key>1C82207691E461688320AE63</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxCsvRow.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxCsv/src/ofxCsvRow.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>3BAFE2897D2FABE86454A7AD</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxCsv.h</string>
+				<key>path</key>
+				<string>../../../addons/ofxCsv/src/ofxCsv.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>EE4D1E14E6E3D28AB35B1BB3</key>
+			<dict>
+				<key>fileRef</key>
+				<string>0E1BE77F4732248CB1EDDF29</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>0E1BE77F4732248CB1EDDF29</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxCsvRow.cpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxCsv/src/ofxCsvRow.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>412E4BCA71876A3B006CE76E</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>EFECE002FA2814DBD4904261</string>
+					<string>0E1BE77F4732248CB1EDDF29</string>
+					<string>3BAFE2897D2FABE86454A7AD</string>
+					<string>1C82207691E461688320AE63</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>5CFAC65997CFC4C36CD009B7</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>412E4BCA71876A3B006CE76E</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>ofxCsv</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>77699BF6BD81647F909A0009</key>
+			<dict>
+				<key>fileRef</key>
+				<string>EFECE002FA2814DBD4904261</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>EFECE002FA2814DBD4904261</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxCsv.cpp</string>
+				<key>path</key>
+				<string>../../../addons/ofxCsv/src/ofxCsv.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>6948EE371B920CB800B5AC1A</key>
 			<dict>
 				<key>children</key>
@@ -612,6 +715,7 @@
 			<dict>
 				<key>children</key>
 				<array>
+					<string>5CFAC65997CFC4C36CD009B7</string>
 					<string>480A780D8D0308AE4A368801</string>
 					<string>A2C3A140678F172C21702046</string>
 					<string>FEB6E8090856141C4443FAEC</string>
@@ -768,6 +872,8 @@
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../addons/ofxCsv/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxTSNE/src</string>
 						<string>../../../addons/ofxTSNE/src/bhtsne</string>
@@ -829,6 +935,8 @@
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../addons/ofxCsv/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxTSNE/src</string>
 						<string>../../../addons/ofxTSNE/src/bhtsne</string>
@@ -889,6 +997,8 @@
 				<array>
 					<string>E4B69E200A3A1BDC003C02F2</string>
 					<string>E4B69E210A3A1BDC003C02F2</string>
+					<string>77699BF6BD81647F909A0009</string>
+					<string>EE4D1E14E6E3D28AB35B1BB3</string>
 					<string>856AA354D08AB4B323081444</string>
 					<string>B56FE57CC35806596D38118C</string>
 					<string>1CD33E884D9E3358252E82A1</string>
@@ -984,6 +1094,8 @@
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../addons/ofxCsv/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxTSNE/src</string>
 						<string>../../../addons/ofxTSNE/src/bhtsne</string>
@@ -1035,6 +1147,8 @@
 					<key>HEADER_SEARCH_PATHS</key>
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../addons/ofxCsv/src</string>
 						<string>../../../addons/ofxGui/src</string>
 						<string>../../../addons/ofxTSNE/src</string>
 						<string>../../../addons/ofxTSNE/src/bhtsne</string>

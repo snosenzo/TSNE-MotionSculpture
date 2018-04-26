@@ -1,8 +1,9 @@
 #pragma once
-
+#include <iostream>
 #include "ofMain.h"
 #include "ofxTSNE.h"
 #include "ofxGui.h"
+#include "ofxCsv.h"
 
 class ofApp : public ofBaseApp{
 
@@ -23,6 +24,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
         void setupFakeData();
+        void readInData(string, int, int);
+        void csvData();
     
     struct TestPoint {
         int class_;
@@ -47,10 +50,11 @@ class ofApp : public ofBaseApp{
     int iter_counter = 0;
     ofxPanel gui;
     ofxButton runAgain;
-    
+    string csvFileName = "samp_embed.csv";
     bool runManually = true;
     bool b_showGUI = true;
     bool b_useFakeData = true;
+    string dataFileName = "word2vec_10000_200d_tensors.bytes";
     
     
 };
