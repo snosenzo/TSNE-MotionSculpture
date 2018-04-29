@@ -4,6 +4,7 @@ This project is a visualization of the paths that word2vec word vectors take whe
 
 ![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/assets/centertsnefin.png "Center of visualization")
 
+![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/assets/outv1smaller.gif "Exploring Animations")
 
 ## TODOs
  - Overall project summary
