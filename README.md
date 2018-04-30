@@ -15,16 +15,14 @@ Above shows the result of the algorithm on the default parameters (perplexity = 
 
 At the center of the visualization is usually a set of points that are very similar. I assume that these points are very closely related in meaning as their mapped 3D embedding path is almost the same.
 
-The orbs represent where the points are in teh current iteration of the t-SNE algorithm. Then the different colored lines represent the paths of their correspondingly colored spheres. The motion comes from the t-SNE algorithm trying to find the minimum error between the clusters in the higher dimensions and the lower dimension clusters.
+The orbs represent where the points are in the current iteration of the t-SNE algorithm. Then the different colored lines represent the paths of their correspondingly colored spheres. The motion comes from the t-SNE algorithm trying to find the minimum error between the clusters in the higher dimensions and the lower dimension clusters.
 
 To see more 3D t-SNE visualizations: [Tensorflow Embedding Projector](https://projector.tensorflow.org/)
 
 Unfortunately, I cannot verify the accuracy of my program because I have not implemented the ability to see labels of points. 
 
 ## TODOs
- - Overall project summary
  - Artistic Decisions
- - Implementation details - explain at a level of Aaron Henderson
  - Inspiration
  - Algorithmic explanation
  - Implementation Resources
