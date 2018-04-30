@@ -21,11 +21,6 @@ To see more 3D t-SNE visualizations: [Tensorflow Embedding Projector](https://pr
 
 Unfortunately, I cannot verify the accuracy of my program because I have not implemented the ability to see labels of points.
 
-## TODOs
- - Artistic Decisions
- - Algorithmic explanation
- - Implementation Resources
- - Future Goals for project completion
  
 
  
