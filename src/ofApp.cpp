@@ -9,7 +9,7 @@ void ofApp::setup(){
 //    gui.add(b_useFakeData.set("fake_data", true));
     gui.add(b_useDiffColors.set("colors", true));
     gui.add(showTrails.set("Trails", true));
-    gui.add(showConnections.set("Connections", true));
+    gui.add(showConnections.set("Connections", false));
     gui.add(startingPoint.set("startPt", 700, 0, 1000));
     gui.add(N.set("NumPts", 100, 10, 300));
     gui.add(D.set("Dims", 100, 50, 150));
@@ -384,19 +384,12 @@ void ofApp::csvData() {
     // We will unpack these points and assign them back to our testPoints dataset.
     
     tsnePoints = tsne.run(data, dims, perplexity, theta, normalize, runManually);
-    
+    iter_counter=0;
     for( int i = 0; i < startingPoint; i++) {
         tsne.iterate();
         iter_counter++;
     }
     
-    // if we didn't run manually, we can collect the points immediately
-    if (!runManually) {
-        for (int i=0; i<testPoints.size(); i++) {
-            testPoints[i].tsnePoint = ofPoint(tsnePoints[i][0], tsnePoints[i][1]);
-            
-        }
-    }
 }
 
 //--------------------------------------------------------------
