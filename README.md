@@ -19,7 +19,7 @@ The orbs represent where the points are in the current iteration of the t-SNE al
 
 To see more 3D t-SNE visualizations: [Tensorflow Embedding Projector](https://projector.tensorflow.org/)
 
-Unfortunately, I cannot verify the accuracy of my program because I have not implemented the ability to see labels of points. 
+Unfortunately, I cannot verify the accuracy of my program because I have not implemented the ability to see labels of points.
 
 ## TODOs
  - Artistic Decisions
