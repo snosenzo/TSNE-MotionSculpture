@@ -23,7 +23,6 @@ Unfortunately, I cannot verify the accuracy of my program because I have not imp
 
 ## TODOs
  - Artistic Decisions
- - Inspiration
  - Algorithmic explanation
  - Implementation Resources
  - Future Goals for project completion
