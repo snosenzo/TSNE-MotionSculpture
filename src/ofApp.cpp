@@ -13,6 +13,7 @@ void ofApp::setup(){
     gui.add(startingPoint.set("startPt", 700, 0, 1000));
     gui.add(perplexity.set("Perplexity", 10, 5, 50));
     gui.add(theta.set("theta", .5, .01, 1));
+    gui.add(scrubber.set("scrubber", 700, 0, 999));
     gui.add(threshold.set("Threshold", 100, 10, 700));
     gui.add(playMotion.set("Play Motion", true));
     gui.add(runAgain.setup("re-run"));
@@ -29,17 +30,24 @@ void ofApp::setup(){
 void ofApp::update(){
     // if we are running our t-SNE manually, we need to run tsne.iterate() to
         // go through each iteration and collect the points where they currently are
-    if (runManually) {
-        vector<TestPoint> newHist;
-        tsnePoints = tsne.iterate();
-        iter_counter++;
-        for (int i=0; i<testPoints.size(); i++) {
-            testPoints[i].tsnePoint = ofPoint(tsnePoints[i][0], tsnePoints[i][1], tsnePoints[i][2]);
-            if(iter_counter < 1000) {
-                paths[i].curveTo(ofVec3f(testPoints[i].tsnePoint.x * ofGetHeight(), testPoints[i].tsnePoint.y * ofGetHeight(), testPoints[i].tsnePoint.z * ofGetHeight()));
-            }
-        }
+    if(scrubber >= 1000) {
+        playMotion = false;
     }
+    if(playMotion) {
+        scrubber++;
+    }
+//    
+//    if (runManually) {
+//        vector<TestPoint> newHist;
+//        tsnePoints = tsne.iterate();
+//        iter_counter++;
+//        for (int i=0; i<testPoints.size(); i++) {
+//            testPoints[i].tsnePoint = ofPoint(tsnePoints[i][0], tsnePoints[i][1], tsnePoints[i][2]);
+//            if(iter_counter < 1000) {
+//                paths[i].curveTo(ofVec3f(testPoints[i].tsnePoint.x * ofGetHeight(), testPoints[i].tsnePoint.y * ofGetHeight(), testPoints[i].tsnePoint.z * ofGetHeight()));
+//            }
+//        }
+//    }
 
 }
 
@@ -74,8 +82,8 @@ void ofApp::draw(){
         ofSetColor(255);
         if(showConnections) {
             for(int j = i-1; j < paths.size()-1; j++) {
-                ofPoint p1 = paths[i].getPointAtPercent(1);
-                ofPoint p2 = paths[j].getPointAtPercent(1);
+                ofPoint p1 = paths[i].getPointAtPercent(scrubber/1000.0);
+                ofPoint p2 = paths[j].getPointAtPercent(scrubber/1000.0);
                 ofSetColor(255);
                 if(ofDist(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z) < threshold){
                     ofDrawLine(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
@@ -86,7 +94,7 @@ void ofApp::draw(){
         ofSetColor(testPoints[i].color);
         if(showTrails){
             paths[i].draw();
-            ofDrawSphere(paths[i].getPointAtPercent(1), 8);
+            ofDrawSphere(paths[i].getPointAtPercent(scrubber/1000.0), 8);
         }
         
     }
@@ -175,7 +183,24 @@ void ofApp::setupTsne() {
     for( int i = 0; i < startingPoint; i++) {
         tsne.iterate();
         iter_counter++;
+        
     }
+    
+    for( int i = startingPoint; i <= 1000; i++) {
+        vector<TestPoint> newHist;
+        tsnePoints = tsne.iterate();
+        iter_counter++;
+        for (int i=0; i<testPoints.size(); i++) {
+            testPoints[i].tsnePoint = ofPoint(tsnePoints[i][0], tsnePoints[i][1], tsnePoints[i][2]);
+            if(iter_counter < 1000) {
+                paths[i].curveTo(ofVec3f(testPoints[i].tsnePoint.x * ofGetHeight(), testPoints[i].tsnePoint.y * ofGetHeight(), testPoints[i].tsnePoint.z * ofGetHeight()));
+            } else {
+                break;
+            }
+        }
+    }
+    
+    
 }
 
 // returns vector<vector<float>>
