@@ -57,6 +57,9 @@ class ofApp : public ofBaseApp{
     ofParameter<bool> showConnections;
     ofParameter<int> scrubber;
     ofParameter<bool> playMotion;
+    ofParameter<int> interpLine1;
+    ofParameter<int> interpLine2;
+    ofParameter<float> interpDensity;
     int iter_counter = 0;
     ofxPanel gui;
     ofxButton runAgain;

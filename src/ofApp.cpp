@@ -10,10 +10,13 @@ void ofApp::setup(){
     gui.add(mode.set("mode", 0, 0, 2));
     gui.add(showTrails.set("Trails", true));
     gui.add(showConnections.set("Connections", false));
-    gui.add(startingPoint.set("startPt", 700, 0, 1000));
+    gui.add(startingPoint.set("startPt", 300, 0, 1000));
     gui.add(perplexity.set("Perplexity", 10, 5, 50));
     gui.add(theta.set("theta", .5, .01, 1));
     gui.add(scrubber.set("scrubber", 700, 0, 999));
+    gui.add(interpLine1.set("interpLine1", 0, 0, 200));
+    gui.add(interpLine2.set("interpLine2", 1, 0, 200));
+    gui.add(interpDensity.set("interpDensity", .0002, .00001, .001));
     gui.add(threshold.set("Threshold", 100, 10, 700));
     gui.add(playMotion.set("Play Motion", true));
     gui.add(runAgain.setup("re-run"));
@@ -53,12 +56,27 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackground(100);
+    ofBackground(0);
     //    cam.setTarget(ofVec3f(ofGetWidth()/2, ofGetHeight()/2, ofGetFrameNum()-300));
     cam.begin();
     ofPushMatrix();
     ofTranslate(-1 * ofGetHeight()/2, -1 * ofGetHeight()/2, -1 * ofGetHeight()/2);
     
+    float currPercent = 0.0;
+    ofPolyline l1 = paths[interpLine1];
+    ofPolyline l2 = paths[interpLine2];
+    ofSetColor(255);
+    ofSetLineWidth(1);
+    while(currPercent <= 1) {
+        ofPoint p1 = l1.getPointAtPercent(currPercent);
+        ofPoint p2 = l2.getPointAtPercent(currPercent);
+        float gScaleColor = ofMap(currPercent, 0, 1, 0, 255);
+        ofSetColor(gScaleColor);
+
+        
+        ofDrawLine(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+        currPercent += interpDensity;
+    }
     // this goes back along the path to trace the last few steps of the path
 //    for(float k = .99; k <= 1.0; k+=.001){
 //        for(int i = 0; i < paths.size(); i++){
@@ -74,6 +92,7 @@ void ofApp::draw(){
 //            }
 //        }
 //    }
+    
     
     
     // Draws all of the paths for the points
