@@ -44,6 +44,7 @@ class ofApp : public ofBaseApp{
     };
     ofxTSNE tsne;
     ofEasyCam cam;
+    ofLight light;
     vector<TestPoint> testPoints;
     vector<vector<double> > tsnePoints;
     vector<ofPolyline> paths;

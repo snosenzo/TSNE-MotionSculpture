@@ -3,6 +3,11 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    
+    ofEnableLighting();
+    light.setup();
+    light.enable();
+    light.setPosition(0, 0, 0);
     ofEnableDepthTest();
     runAgain.addListener(this, &ofApp::setupTsne);
     gui.setup("FakeData");
@@ -71,16 +76,26 @@ void ofApp::draw(){
     ofSetLineWidth(1);
     
     if(showSculpture) {
+        ofMesh mesh;
+        mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
         while(currPercent <= 1) {
-            ofPoint p1 = l1.getPointAtPercent(currPercent);
-            ofPoint p2 = l2.getPointAtPercent(currPercent);
             float gScaleColor = ofMap(currPercent, 0, 1, 0, 255);
-            ofSetColor(gScaleColor);
+            ofPoint p1 = l1.getPointAtPercent(currPercent);
+            mesh.addVertex(p1);
+//            mesh.addColor(ofFloatColor(gScaleColor));
+            mesh.addColor(ofFloatColor(ofColor::orangeRed));
+
+            ofPoint p2 = l2.getPointAtPercent(currPercent);
+            mesh.addVertex(p2);
+            mesh.addColor(ofFloatColor(ofColor::orangeRed));
+//            ofSetColor(gScaleColor);
 
             
-            ofDrawLine(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+//            ofDrawLine(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+            
             currPercent += interpDensity;
         }
+        mesh.draw();
     }
     // this goes back along the path to trace the last few steps of the path
 //    for(float k = .99; k <= 1.0; k+=.001){
