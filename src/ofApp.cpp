@@ -7,16 +7,18 @@ void ofApp::setup(){
     runAgain.addListener(this, &ofApp::setupTsne);
     gui.setup("FakeData");
 //    gui.add(b_useFakeData.set("fake_data", true));
-    gui.add(mode.set("mode", 0, 0, 2));
-    gui.add(showTrails.set("Trails", true));
+    gui.add(mode.set("mode", 2, 0, 2));
+    gui.add(showTrails.set("Trails", false));
     gui.add(showConnections.set("Connections", false));
-    gui.add(startingPoint.set("startPt", 300, 0, 1000));
+    gui.add(showSculpture.set("Sculpture", false));
+    gui.add(showPoints.set("Spheres", true));
+    gui.add(startingPoint.set("startPt", 155, 0, 1000));
     gui.add(perplexity.set("Perplexity", 10, 5, 50));
     gui.add(theta.set("theta", .5, .01, 1));
     gui.add(scrubber.set("scrubber", 700, 0, 999));
-    gui.add(interpLine1.set("interpLine1", 0, 0, 200));
+    gui.add(interpLine1.set("interpLine1", 20, 0, 200));
     gui.add(interpLine2.set("interpLine2", 1, 0, 200));
-    gui.add(interpDensity.set("interpDensity", .0002, .00001, .001));
+    gui.add(interpDensity.set("interpDensity", .00017, .00001, .001));
     gui.add(threshold.set("Threshold", 100, 10, 700));
     gui.add(playMotion.set("Play Motion", true));
     gui.add(runAgain.setup("re-run"));
@@ -67,15 +69,18 @@ void ofApp::draw(){
     ofPolyline l2 = paths[interpLine2];
     ofSetColor(255);
     ofSetLineWidth(1);
-    while(currPercent <= 1) {
-        ofPoint p1 = l1.getPointAtPercent(currPercent);
-        ofPoint p2 = l2.getPointAtPercent(currPercent);
-        float gScaleColor = ofMap(currPercent, 0, 1, 0, 255);
-        ofSetColor(gScaleColor);
+    
+    if(showSculpture) {
+        while(currPercent <= 1) {
+            ofPoint p1 = l1.getPointAtPercent(currPercent);
+            ofPoint p2 = l2.getPointAtPercent(currPercent);
+            float gScaleColor = ofMap(currPercent, 0, 1, 0, 255);
+            ofSetColor(gScaleColor);
 
-        
-        ofDrawLine(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
-        currPercent += interpDensity;
+            
+            ofDrawLine(p1.x, p1.y, p1.z, p2.x, p2.y, p2.z);
+            currPercent += interpDensity;
+        }
     }
     // this goes back along the path to trace the last few steps of the path
 //    for(float k = .99; k <= 1.0; k+=.001){
@@ -113,6 +118,8 @@ void ofApp::draw(){
         ofSetColor(testPoints[i].color);
         if(showTrails){
             paths[i].draw();
+        }
+        if(showPoints) {
             ofDrawSphere(paths[i].getPointAtPercent(scrubber/1000.0), 8);
         }
         

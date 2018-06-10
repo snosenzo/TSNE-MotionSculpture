@@ -55,6 +55,8 @@ class ofApp : public ofBaseApp{
     ofParameter<int> startingPoint;
     ofParameter<bool> showTrails;
     ofParameter<bool> showConnections;
+    ofParameter<bool> showSculpture;
+    ofParameter<bool> showPoints;
     ofParameter<int> scrubber;
     ofParameter<bool> playMotion;
     ofParameter<int> interpLine1;
