@@ -5,9 +5,21 @@ void ofApp::setup(){
     
     
     ofEnableLighting();
-    light.setup();
-    light.enable();
-    light.setPosition(0, 0, 0);
+    light1.setup();
+    light1.enable();
+    light1.setAmbientColor(ofFloatColor(ofColor(100, 60, 170)));
+    light1.setDiffuseColor(ofFloatColor(ofColor(100, 60, 170)));
+    light1.setSpecularColor(ofFloatColor(ofColor(100, 60, 170)));
+//    light1.setPosition(0, 0, 0);
+    
+//    light2.setup();
+//    light2.enable();
+//    light2.setAmbientColor(ofFloatColor(ofColor(237, 49, 49)));
+//    light2.setDiffuseColor(ofFloatColor(ofColor(237, 49, 49)));
+//    light2.setSpecularColor(ofFloatColor(ofColor(237, 49, 49)));
+//    light2.setPosition(0, 0, 0);
+    
+    
     ofEnableDepthTest();
     runAgain.addListener(this, &ofApp::setupTsne);
     gui.setup("FakeData");
@@ -21,9 +33,17 @@ void ofApp::setup(){
     gui.add(perplexity.set("Perplexity", 10, 5, 50));
     gui.add(theta.set("theta", .5, .01, 1));
     gui.add(scrubber.set("scrubber", 700, 0, 999));
-    gui.add(interpLine1.set("interpLine1", 20, 0, 200));
-    gui.add(interpLine2.set("interpLine2", 1, 0, 200));
+    gui.add(interpLine1.set("interpLine1", 20, 0, 150));
+    gui.add(interpLine2.set("interpLine2", 1, 0, 150));
     gui.add(interpDensity.set("interpDensity", .00017, .00001, .001));
+    
+    gui.add(shininess.set("interpDensity", 1, 0, 10));
+
+    gui.add(matDiff.setup("diffuse color", ofColor(97, 217, 49), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(matEmis.setup("emissive color", ofColor(213, 31, 19), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(lightColor.setup("light color", ofColor(83, 255, 161), ofColor(0, 0), ofColor(255, 255)));
+    gui.add(bgColor.setup("bg color", ofColor(59, 52, 255), ofColor(0, 0), ofColor(255, 255)));
+    
     gui.add(threshold.set("Threshold", 100, 10, 700));
     gui.add(playMotion.set("Play Motion", true));
     gui.add(runAgain.setup("re-run"));
@@ -40,6 +60,13 @@ void ofApp::setup(){
 void ofApp::update(){
     // if we are running our t-SNE manually, we need to run tsne.iterate() to
         // go through each iteration and collect the points where they currently are
+    light1.setAmbientColor(ofColor(lightColor));
+    matRibbon.setDiffuseColor(ofColor(matDiff));
+    matRibbon.setEmissiveColor(ofColor(matEmis));
+    matRibbon.setShininess(shininess);
+    ofSetBackgroundColor(ofColor(bgColor));
+    
+    
     if(scrubber >= 1000) {
         playMotion = false;
     }
@@ -63,18 +90,23 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackground(0);
-    //    cam.setTarget(ofVec3f(ofGetWidth()/2, ofGetHeight()/2, ofGetFrameNum()-300));
-    cam.begin();
-    ofPushMatrix();
-    ofTranslate(-1 * ofGetHeight()/2, -1 * ofGetHeight()/2, -1 * ofGetHeight()/2);
-    
     float currPercent = 0.0;
     ofPolyline l1 = paths[interpLine1];
     ofPolyline l2 = paths[interpLine2];
     ofSetColor(255);
     ofSetLineWidth(1);
+    light1.setPosition(l1.getPointAtPercent(scrubber/1000.0));
+    ofEnableLighting();
+//    ofBackground(0);
+    //    cam.setTarget(ofVec3f(ofGetWidth()/2, ofGetHeight()/2, ofGetFrameNum()-300));
+    cam.begin();
+    ofPushMatrix();
+    ofTranslate(-1 * ofGetHeight()/2, -1 * ofGetHeight()/2, -1 * ofGetHeight()/2);
     
+   
+    //    light2.setPosition(l2.getPointAtPercent(scrubber/1000.0));
+    
+    matRibbon.begin();
     if(showSculpture) {
         ofMesh mesh;
         mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
@@ -97,6 +129,7 @@ void ofApp::draw(){
         }
         mesh.draw();
     }
+    matRibbon.end();
     // this goes back along the path to trace the last few steps of the path
 //    for(float k = .99; k <= 1.0; k+=.001){
 //        for(int i = 0; i < paths.size(); i++){
@@ -143,6 +176,7 @@ void ofApp::draw(){
     ofPopMatrix();
     
     cam.end();
+    ofDisableLighting();
     if(b_showGUI) {
         ofDisableDepthTest();
         ofSetColor(255, 255, 255);
@@ -153,11 +187,18 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    ofImage img;
     if(key == 'h') {
         b_showGUI = !b_showGUI;
         if(!b_showGUI) {
             ofHideCursor();
+        } else {
+            ofShowCursor();
         }
+    }
+    if(key == 's'){
+        img.grabScreen(0, 0 , ofGetWidth(), ofGetHeight());
+        img.save("screenshot.png");
     }
 
 }

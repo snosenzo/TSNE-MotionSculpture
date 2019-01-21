@@ -42,9 +42,11 @@ class ofApp : public ofBaseApp{
         vector<float> point;
         ofPoint tsnePoint;
     };
+    ofMaterial matRibbon;
     ofxTSNE tsne;
     ofEasyCam cam;
-    ofLight light;
+    ofLight light1;
+    ofLight light2;
     vector<TestPoint> testPoints;
     vector<vector<double> > tsnePoints;
     vector<ofPolyline> paths;
@@ -63,6 +65,11 @@ class ofApp : public ofBaseApp{
     ofParameter<int> interpLine1;
     ofParameter<int> interpLine2;
     ofParameter<float> interpDensity;
+    ofxColorSlider matDiff;
+    ofxColorSlider matEmis;
+    ofxColorSlider lightColor;
+    ofxColorSlider bgColor;
+    ofParameter<float> shininess;
     int iter_counter = 0;
     ofxPanel gui;
     ofxButton runAgain;
