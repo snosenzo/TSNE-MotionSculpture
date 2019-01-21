@@ -2,6 +2,9 @@
 
 This project is a visualization of the paths that word2vec word vectors take when they are processed by the dimensionality reduction algorithm t-SNE.
 
+![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/bin/data/t3.png "Motion Sculpting")
+![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/bin/data/t2.png "Motion Sculpting")
+
 
 ![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/assets/motionsculpt50.gif "Motion Sculpting")
 
