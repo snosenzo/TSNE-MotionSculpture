@@ -1,7 +1,8 @@
 #  TSNE Data Motion Sculpture (WIP)
 
 This project is a visualization of the paths that word2vec word vectors take when they are processed by the dimensionality reduction algorithm t-SNE.
-Check out the [wiki](https://github.com/snosenzo/TSNE-MotionSculpture/wiki)
+
+For more my thought process and further documentation check out the [wiki](https://github.com/snosenzo/TSNE-MotionSculpture/wiki)
 
 ![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/bin/data/t3.png "Motion Sculpting")
 ![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/bin/data/t2.png "Motion Sculpting")
