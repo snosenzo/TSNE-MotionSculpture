@@ -1,6 +1,7 @@
 #  TSNE Data Motion Sculpture (WIP)
 
 This project is a visualization of the paths that word2vec word vectors take when they are processed by the dimensionality reduction algorithm t-SNE.
+Check out the [wiki](https://github.com/snosenzo/TSNE-MotionSculpture/wiki)
 
 ![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/bin/data/t3.png "Motion Sculpting")
 ![alt text](https://github.com/snosenzo/TSNE-MotionSculpture/blob/master/bin/data/t2.png "Motion Sculpting")
@@ -22,7 +23,7 @@ The orbs represent where the points are in the current iteration of the t-SNE al
 
 To see more 3D t-SNE visualizations: [Tensorflow Embedding Projector](https://projector.tensorflow.org/)
 
-Unfortunately, I cannot verify the accuracy of my program because I have not implemented the ability to see labels of points.
+Due to this being a purely visual project first, I cannot verify the accuracy of my program because I have not implemented the ability to see labels of points yet.
 
  
 
